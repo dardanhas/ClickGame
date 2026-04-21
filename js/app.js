@@ -8,14 +8,16 @@ let score = 0;
 let timeleft = 5;
 let GameStarted = false;
 let GameEnded = false;
+let Interval = null;
 
 //HTML DOM
 const button1 = document.getElementById('button1');
 const ScoreDisplay = document.getElementById('ScoreDisplay');
 const TimerDisplay = document.getElementById('TimerDisplay');
+
 // UI Functions & Events
 button1.addEventListener('click', () => {
-  if (!GameEnded){
+  if (!GameEnded) {
     increaseScore();
   }
 
@@ -28,25 +30,28 @@ button1.addEventListener('click', () => {
 // Functions
 function increaseScore() {
 score++;
-ScoreDisplay.textContent = score;
+ScoreDisplay.innerText = score;
 }
 
 function countdown() {
   timeleft--;
-  TimerDisplay.textContent = timeleft;
-  
-  if (timeleft < 0){
+  TimerDisplay.innerText = timeleft;
+  console.log(timeleft);
+
+  if (timeleft < 0) {
     TimerDisplay.innerText = 0;
     EndGame();
   }
 }
 
 function StartGame() {
-  setInterval(countdown, 1000);
+  Interval = setInterval(countdown, 1000); // It stops but at -1
   GameStarted = true;
 }
 
 function EndGame() {
 GameEnded = true;
+clearInterval(Interval);
+// TODO: Enable user to put their name
 }
 
