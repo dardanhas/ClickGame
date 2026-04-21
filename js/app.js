@@ -14,6 +14,8 @@ let Interval = null;
 const button1 = document.getElementById('button1');
 const ScoreDisplay = document.getElementById('ScoreDisplay');
 const TimerDisplay = document.getElementById('TimerDisplay');
+const label1 = document.getElementById('label1');
+const input1 = document.getElementById('name');
 
 // UI Functions & Events
 button1.addEventListener('click', () => {
@@ -26,6 +28,8 @@ button1.addEventListener('click', () => {
   }
 })
 
+input1.style.display = 'none';
+label1.style.display = 'none';
 
 // Functions
 function increaseScore() {
@@ -52,6 +56,8 @@ function StartGame() {
 function EndGame() {
 GameEnded = true;
 clearInterval(Interval);
-// TODO: Enable user to put their name
+button1.style.display = 'none';
+  input1.style.display = 'block';
+  label1.style.display = 'block';
 }
 
