@@ -12,6 +12,7 @@ let Interval = null;
 
 //HTML DOM
 const button1 = document.getElementById('button1');
+const button2 = document.getElementById('button2');
 const ScoreDisplay = document.getElementById('ScoreDisplay');
 const TimerDisplay = document.getElementById('TimerDisplay');
 const label1 = document.getElementById('label1');
@@ -28,8 +29,13 @@ button1.addEventListener('click', () => {
   }
 })
 
+button2.addEventListener('click', () => {
+SubmitHighscore();
+})
+
 input1.style.display = 'none';
 label1.style.display = 'none';
+button2.style.display = 'none';
 
 // Functions
 function increaseScore() {
@@ -59,5 +65,10 @@ clearInterval(Interval);
 button1.style.display = 'none';
   input1.style.display = 'block';
   label1.style.display = 'block';
+  button2.style.display = 'block';
 }
 
+function SubmitHighscore() {
+console.log(input1.value);
+// TODO: Post value to API 
+}
