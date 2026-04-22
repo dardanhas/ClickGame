@@ -73,13 +73,11 @@ async function SubmitHighscore() {
 
 
   if (response.ok) {
-    message.innerText = "Ditt score har sparats!";
+    message.innerText = "Score has been saved!";
     button2.style.display = 'none';
     input1.style.display = 'none';
     label1.style.display = 'none';
   } else {
-    message.innerText = "Det gick inte att spara, försök igen.";
+    message.innerText = "Score could not be saved.";
   }
-
-
 }
