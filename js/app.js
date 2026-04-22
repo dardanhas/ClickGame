@@ -1,7 +1,3 @@
-// Click a button or object to earn points so that I can increase my score. DONE
-// See my current score during the game so that I know how well I am doing. DONE
-
-// See a countdown timer so that I know how much time is left. setInterval();
 
 // Variables
 let score = 0;
@@ -17,6 +13,7 @@ const ScoreDisplay = document.getElementById('ScoreDisplay');
 const TimerDisplay = document.getElementById('TimerDisplay');
 const label1 = document.getElementById('label1');
 const input1 = document.getElementById('name');
+const message = document.getElementById('message');
 
 // UI Functions & Events
 button1.addEventListener('click', () => {
@@ -30,7 +27,7 @@ button1.addEventListener('click', () => {
 })
 
 button2.addEventListener('click', () => {
-SubmitHighscore();
+  SubmitHighscore();
 })
 
 input1.style.display = 'none';
@@ -39,8 +36,8 @@ button2.style.display = 'none';
 
 // Functions
 function increaseScore() {
-score++;
-ScoreDisplay.innerText = score;
+  score++;
+  ScoreDisplay.innerText = score;
 }
 
 function countdown() {
@@ -60,15 +57,29 @@ function StartGame() {
 }
 
 function EndGame() {
-GameEnded = true;
-clearInterval(Interval);
-button1.style.display = 'none';
+  GameEnded = true;
+  clearInterval(Interval);
+  button1.style.display = 'none';
   input1.style.display = 'block';
   label1.style.display = 'block';
   button2.style.display = 'block';
 }
 
-function SubmitHighscore() {
-console.log(input1.value);
-// TODO: Post value to API 
+async function SubmitHighscore() {
+  const response = await fetch("https://hooks.zapier.com/hooks/catch/8338993/ujs9jj9/", {
+    method: "POST",
+    body: JSON.stringify({ name: input1.value, score: score }),
+  });
+
+
+  if (response.ok) {
+    message.innerText = "Ditt score har sparats!";
+    button2.style.display = 'none';
+    input1.style.display = 'none';
+    label1.style.display = 'none';
+  } else {
+    message.innerText = "Det gick inte att spara, försök igen.";
+  }
+
+
 }
