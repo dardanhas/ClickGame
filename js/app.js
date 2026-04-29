@@ -1,7 +1,7 @@
 
 // Variables
 let score = 0;
-let timeleft = 5;
+let timeleft = 60;
 let GameStarted = false;
 let GameEnded = false;
 let Interval = null;
